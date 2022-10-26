@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Calculator</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer type="module"></script>
+</head>
+
+<body>
+  <div class="container grid">
+    <div class="calculator">
+      <div class="display-part m-x-auto">
+        <div class="display-type">
+          <div id="type-span">500÷2</div>
+          <div id="cursor"></div>
+        </div>
+        <div class="instant-ans">250
+        </div>
+        <div class="bottom-pull"></div>
+      </div>
+      <div class="buttons-part m-x-auto flex">
+        <div class="querky-ops row">
+          <button class="op sqbut">√</button>
+          <button class="op sqbut">π</button>
+          <button class="op sqbut">^</button>
+          <button class="op sqbut">!</button>
+        </div>
+        <div class="roundbuts">
+          <div class="row">
+            <button class="spop but" id="AC">AC</button>
+            <button class="op but">()</button>
+            <button class="op but">％</button>
+            <button class="op but">÷</button>
+          </div>
+          <div class="row">
+            <button class="but">7</button>
+            <button class="but">8</button>
+            <button class="but">9</button>
+            <button class="op but">×</button>
+          </div>
+          <div class="row">
+            <button class="but">4</button>
+            <button class="but">5</button>
+            <button class="but">6</button>
+            <button class="op but">-</button>
+          </div>
+          <div class="row">
+            <button class="but">1</button>
+            <button class="but">2</button>
+            <button class="but">3</button>
+            <button class="op but">+</button>
+          </div>
+          <div class="row">
+            <button class="but">0</button>
+            <button class="but">•</button>
+            <button class="spop but" id="BS">
+              <svg width="20" height="20" viewBox="0 0 38 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19.4108 16.4191L29.2221 6.60776M19.3631 6.60776L29.1745 16.4191M15.5486 0.610962H36.8952V21.9576H15.5486L1.67331 11.2843L15.5486 0.610962Z" stroke="black" />
+              </svg>
+            </button>
+            <button class="spop but">=</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
