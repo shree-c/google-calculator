@@ -12,22 +12,37 @@
 
 <body>
   <div class="container grid">
-    <div class="calculator">
-      <div class="display-part m-x-auto">
-        <div class="display-type">
+    <div id="calculator">
+      <div id="display-part" class="m-x-auto">
+        <div id="display-type">
           <div id="type-span">500÷2</div>
           <div id="cursor"></div>
         </div>
-        <div class="instant-ans">250
+        <div id="instant-ans">250
         </div>
-        <div class="bottom-pull"></div>
+        <div id="bottom-pull"></div>
       </div>
-      <div class="buttons-part m-x-auto flex">
+      <div id="buttons-part" class="m-x-auto flex">
         <div class="querky-ops row">
-          <button class="op sqbut">√</button>
-          <button class="op sqbut">π</button>
-          <button class="op sqbut">^</button>
-          <button class="op sqbut">!</button>
+          <button class="but op sqbut">√</button>
+          <button class="but op sqbut">π</button>
+          <button class="but op sqbut">^</button>
+          <button class="but op sqbut">!</button>
+          <button id='reveal' class="but op sqbut spop">꣺</button>
+        </div>
+        <div id="hidden-buts">
+          <div class="querky-ops row">
+            <button class="but op sqbut">RAD</button>
+            <button class="but op sqbut">sin</button>
+            <button class="but op sqbut">cos</button>
+            <button class="but op sqbut">tan</button>
+          </div>
+          <div class="querky-ops row">
+            <button class="but op sqbut">INV</button>
+            <button class="but op sqbut">e</button>
+            <button class="but op sqbut">ln</button>
+            <button class="but op sqbut">log</button>
+          </div>
         </div>
         <div class="roundbuts">
           <div class="row">
@@ -37,21 +52,21 @@
             <button class="op but">÷</button>
           </div>
           <div class="row">
-            <button class="but">7</button>
-            <button class="but">8</button>
-            <button class="but">9</button>
+            <button class="but num">7</button>
+            <button class="but num">8</button>
+            <button class="but num">9</button>
             <button class="op but">×</button>
           </div>
           <div class="row">
-            <button class="but">4</button>
-            <button class="but">5</button>
-            <button class="but">6</button>
+            <button class="but num">4</button>
+            <button class="but num">5</button>
+            <button class="but num">6</button>
             <button class="op but">-</button>
           </div>
           <div class="row">
-            <button class="but">1</button>
-            <button class="but">2</button>
-            <button class="but">3</button>
+            <button class="but num">1</button>
+            <button class="but num">2</button>
+            <button class="but num">3</button>
             <button class="op but">+</button>
           </div>
           <div class="row">
@@ -62,7 +77,7 @@
                 <path d="M19.4108 16.4191L29.2221 6.60776M19.3631 6.60776L29.1745 16.4191M15.5486 0.610962H36.8952V21.9576H15.5486L1.67331 11.2843L15.5486 0.610962Z" stroke="black" />
               </svg>
             </button>
-            <button class="spop but">=</button>
+            <button class="spop but" id="ANS">=</button>
           </div>
         </div>
       </div>
