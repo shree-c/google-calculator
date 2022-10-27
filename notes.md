@@ -10,3 +10,10 @@
 - restricting keyboard usage to only certain keys
 - storing history in local storage
 
+# algorithm for adding brackets
+
+- if there is '(' as last element then add '('
+  - else if num of '(' is greater than num of ')' then add ')'
+  - else add '('
+- always add a '(' to functions that need it
+- automatically add ')' after a value is given to such functions so that answer can be shown
