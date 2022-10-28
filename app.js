@@ -55,12 +55,33 @@ function removeOneToken() {
   }
 }
 
+function inTheMiddleOfNumber(tokenArray) {
+  if (tokenArray.length === 0) {
+    return false
+  } else {
+    for (let i = tokenArray.length - 1; i >= 0; i--) {
+      if (isSign(tokenArray[i]) || tokenArray[i] === '(' || tokenArray[i] === ')') {
+        return false
+      }
+      if (tokenArray[i] === '.') {
+        return true
+      }
+    }
+  }
+}
+
+function handleDecimalPoints(tokenArray) {
+  const len = tokenArray.length
+  if (len === 0 || !inTheMiddleOfNumber(tokenArray)) {
+    tokenArray.push('.')
+    appendToType('.')
+  }
+}
 
 function handleBrackets(tokenArray) {
   if (tokenArray.length !== 0) {
     const lastElement = tokenArray[tokenArray.length - 1]
     if (lastElement === '(' || isSign(lastElement)) {
-      console.log('last element', lastElement)
       tokenArray.push('(')
       appendToType('(')
     } else {
@@ -100,6 +121,9 @@ document.addEventListener('click', (e) => {
       appendToType(target.innerText)
       internalTokens.push(target.innerText)
       setAnswer(evaluate(internalTokens))
+    }
+    else if (e.target.innerText === '•') {
+      handleDecimalPoints(internalTokens)
     } else {
       appendToType(target.innerText)
       tokensMap[target.innerText]
@@ -110,6 +134,7 @@ document.addEventListener('click', (e) => {
   if (e.target.innerText === '()') {
     handleBrackets(internalTokens)
   }
+
   //handling special operations
   if (target.classList.contains('spop')) {
     switch (target.id) {

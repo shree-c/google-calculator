@@ -4,19 +4,6 @@ export function isSign(arg) {
 
 // process decimal points
 function processDecimals(tokenArray) {
-
-  let len = tokensArray.length
-  if (len < 3) {
-    return tokensArray
-  } else {
-    const retArr = []
-    for (let i = 0; i <= len - 2; i++) {
-      if (!Number.isNaN(tokenArray[i]) && tokenArray[i + 1] === '.' && !Number.isNaN(tokenArray[i + 2])) {
-        retArr.push([tokenArray[i], tokenArray[i + 2].join('.')])
-        i += 3
-      }
-    }
-  }
 }
 
 //decimal points should be processed before this is applied
