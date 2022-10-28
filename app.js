@@ -35,12 +35,14 @@ const tokensMap = {
     internalTokens.push('+')
   },
   get π() {
-    internalTokens.push('*')
+    internalTokens.push('(')
     internalTokens.push('Math.PI')
+    internalTokens.push(')')
   },
   get e() {
-    internalTokens.push('*')
+    internalTokens.push('(')
     internalTokens.push('Math.E')
+    internalTokens.push(')')
   },
 }
 // even ( and ) are considered as tokens and are added seperately
@@ -165,5 +167,4 @@ document.addEventListener('click', (e) => {
         }
     }
   }
-  console.log(internalTokens)
 })
