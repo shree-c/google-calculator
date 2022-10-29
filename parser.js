@@ -6,6 +6,44 @@ function isDecimalPart(item) {
   else
     return false
 }
+
+const fc = {
+  fsin: function (val) {
+    return Math.sin(val)
+  },
+  fcos: function (val) {
+    return Math.cos(val)
+  },
+  ftan: function (val) {
+    return Math.cos(val)
+  },
+  log: function (val) {
+    return Math.log10(val)
+  },
+  ln: function (val) {
+    return Math.log(val)
+  },
+  asin: function (val) {
+    return Math.asin(val)
+  },
+  acos: function (val) {
+    return Math.acos(val)
+  },
+  atan: function (val) {
+    return Math.atan(val)
+  },
+  sqrt: function (val) {
+    return Math.sqrt(val)
+  },
+  raise2: function (val) {
+    return val ** 2
+  },
+  raise10: function (val) {
+    return val ** 10
+  }
+
+}
+//concatanates sepeperate number and decimal point tokens
 function processDecimals(tokenArray) {
   const retArr = []
   let temp = []
@@ -25,14 +63,13 @@ function processDecimals(tokenArray) {
   if (temp.length !== 0) {
     retArr.push(temp.join(''))
   }
-  // console.log('retarr', retArr)
   return retArr
 }
 
 //decimal points should be processed before this is applied
+//inserts multiplication signs where it is implicitly assumed
 function addStar(tokensArray) {
   //between two tokens that evaulate to a value and do not have any operator between them
-  //after closing brace and next element is not a sign
   //after a number and next element is not a sign
   //minimum three elements are required
   let len = tokensArray.length
@@ -42,7 +79,17 @@ function addStar(tokensArray) {
     const retArr = []
     for (let i = 0; i < len - 1; i++) {
       // console.log(tokensArray[i], tokensArray[i + 1])
-      if (((tokensArray[i] === ')') && (!isSign(tokensArray[i + 1]) && tokensArray[i + 1] !== ')')) || (!Number.isNaN(+tokensArray[i]) && Number.isNaN(+tokensArray[i + 1]) && tokensArray[i + 1] !== ')' && !isSign(tokensArray[i + 1]))) {
+      if (
+        //experimental
+        //for processing math functions
+        (((tokensArray[i]) === ')') && ((!Number.isNaN(tokensArray[i])) && (tokensArray[i + 1].startsWith('f'))))
+        ||
+        //after closing brace and next element is not a sign or a ')'
+        ((tokensArray[i] === ')') && (!isSign(tokensArray[i + 1]) && tokensArray[i + 1] !== ')'))
+        ||
+        //after number and next element is not a sign, number, and a ')'
+        (!Number.isNaN(+tokensArray[i]) && Number.isNaN(+tokensArray[i + 1]) && tokensArray[i + 1] !== ')' && !isSign(tokensArray[i + 1]))
+      ) {
         retArr.push(tokensArray[i], '*')
       } else {
         retArr.push(tokensArray[i])
@@ -53,7 +100,8 @@ function addStar(tokensArray) {
   }
 }
 
-export function evaluate(equation) {
+//the fake star of the show
+export const evaluate = (function evaluate(equation) {
   try {
     console.log('eq', equation)
     return eval(addStar(processDecimals(equation)).join(''))
@@ -62,4 +110,4 @@ export function evaluate(equation) {
     console.error((addStar(processDecimals(equation)).join('')))
     return 'error'
   }
-}
+}).bind(fc)

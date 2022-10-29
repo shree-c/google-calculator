@@ -8,7 +8,7 @@ export const TM = {
 }
 
 export const FUNS = {
-  'sin': 'Math.sin',
-  'cos': 'Math.cos',
-  'tan': 'Math.tan',
+  'sin': 'fc.fsin',
+  'cos': 'fc.fcos',
+  'tan': 'fc.ftan',
 }

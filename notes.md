@@ -17,3 +17,22 @@
   - else add '('
 - always add a '(' to functions that need it
 - automatically add ')' after a value is given to such functions so that answer can be shown
+
+# types of buttons
+
+- values
+  - [x] numerical values
+  - [x] math constants
+- calculator operations
+  - [x] backspace
+  - [x] clear
+  - [x] answer
+- math functions
+  - [ ] sin
+  - [ ] con
+  - [ ] tan
+  - [ ] square root
+  - [ ] log10
+  - [ ] loge
+  - [ ] factorial
+   

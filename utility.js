@@ -18,7 +18,7 @@ export const appendToType = (str) => {
 
 export const eraseOne = (n = 1, clear = false) => {
   const typedText = typeElement.innerText
-  typeElement.innerText = typedText.slice((clear) ? typedText.length : 0, typedText.length - 1)
+  typeElement.innerText = typedText.slice((clear) ? typedText.length : 0, typedText.length - n)
   return typedText
 }
 
@@ -45,12 +45,21 @@ export const clear = () => {
 
 //remove an extra star if it exists as pnultimate element
 export function removeOneToken(internalTokens) {
-  if (internalTokens[internalTokens.length - 2] === '*') {
-    internalTokens.pop()
-    internalTokens.pop()
-  } else {
-    internalTokens.pop()
+  let reducedLength = 0
+  if (internalTokens.length !== 0) {
+    if (internalTokens[internalTokens.length - 2] == '*' || internalTokens[internalTokens.length - 2]?.startsWith('f')) {
+      reducedLength += internalTokens.pop().length
+      if (internalTokens[internalTokens.length - 1].startsWith('f')) {
+        reducedLength += internalTokens.pop().length - 3
+      } else {
+        reducedLength += internalTokens.pop().length
+      }
+    } else {
+      reducedLength = internalTokens.pop().length
+    }
   }
+  console.log('--<>', reducedLength)
+  return reducedLength
 }
 
 //check whether the is in the middle of a floating point value
@@ -139,4 +148,7 @@ export function handleBrackets(tokenArray) {
 
 //handle math functions in calc
 export function handleFuns(fun, tokenArray) {
+  tokenArray.push(FUNS[fun])
+  tokenArray.push('(')
+  appendToType(`${fun}(`)
 }

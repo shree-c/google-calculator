@@ -60,9 +60,6 @@ export function handleButtonEvents() {
       } else if (e.target.classList.contains('op')) {
         handleOps(e.target.innerText, internalTokens)
         setAnswer(evaluate(internalTokens))
-      } else if (e.target.classList.contains('fun')) {
-        handleFuns(e.target.innerText, internalTokens)
-        setAnswer(evaluate(internalTokens))
       } else {
         appendToType(target.innerText)
         tokensMap[target.innerText]
@@ -72,6 +69,10 @@ export function handleButtonEvents() {
     // handeling brackets
     if (e.target.innerText === '()') {
       handleBrackets(internalTokens)
+    }
+    if (e.target.classList.contains('fun')) {
+      handleFuns(e.target.innerText, internalTokens)
+      setAnswer(evaluate(internalTokens))
     }
 
     //handling special operations
@@ -86,8 +87,9 @@ export function handleButtonEvents() {
           break
         case 'BS':
           {
-            eraseOne()
-            removeOneToken(internalTokens)
+            console.log('before', internalTokens)
+            const lengthDiff = removeOneToken(internalTokens)
+            eraseOne(lengthDiff)
             setAnswer(evaluate(internalTokens))
           }
           break
