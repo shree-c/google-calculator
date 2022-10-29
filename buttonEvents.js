@@ -1,6 +1,6 @@
 import { appendToType, eraseOne, cursorBlink, setAnswer, clear, handleDecimalPoints, handleFuns, handleOps, removeOneToken, handleBrackets } from './utility.js'
 import { evaluate } from './parser.js'
-let internalTokens = ['500', '/', '2']
+let internalTokens = ['5', '0', '0', '/', '2']
 const tokensMap = {
   get 'sin'() {
     internalTokens.push()
@@ -30,6 +30,7 @@ const tokensMap = {
   get '+'() {
     internalTokens.push('+')
   },
+  //brackets are added seperately because parser needs them to add '*' sign
   get π() {
     internalTokens.push('(')
     internalTokens.push('Math.PI')
@@ -87,7 +88,7 @@ export function handleButtonEvents() {
           break
         case 'BS':
           {
-            console.log('before', internalTokens)
+            console.log('before sinding to removeOneToken', internalTokens)
             const lengthDiff = removeOneToken(internalTokens)
             eraseOne(lengthDiff)
             setAnswer(evaluate(internalTokens))

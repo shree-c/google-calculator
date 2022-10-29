@@ -36,3 +36,14 @@
   - [ ] loge
   - [ ] factorial
    
+# types of tokens
+
+- numbers
+- .
+- +, -, *, /, **, %
+- Math.constants (inbuilt math functions)
+- f-functions (custom functions to handle math functions)
+
+# things to be taken care of
+- Math.constants are always prefixed and suffixed with '(' and ')'
+- f-functions are always paired with a opening brace

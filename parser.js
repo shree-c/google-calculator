@@ -1,4 +1,5 @@
 import { isSign } from './utility.js'
+import { fc } from './utilityObjects.js'
 // process decimal points
 function isDecimalPart(item) {
   if (!Number.isNaN(+item) || item === '.')
@@ -7,42 +8,6 @@ function isDecimalPart(item) {
     return false
 }
 
-const fc = {
-  fsin: function (val) {
-    return Math.sin(val)
-  },
-  fcos: function (val) {
-    return Math.cos(val)
-  },
-  ftan: function (val) {
-    return Math.cos(val)
-  },
-  log: function (val) {
-    return Math.log10(val)
-  },
-  ln: function (val) {
-    return Math.log(val)
-  },
-  asin: function (val) {
-    return Math.asin(val)
-  },
-  acos: function (val) {
-    return Math.acos(val)
-  },
-  atan: function (val) {
-    return Math.atan(val)
-  },
-  sqrt: function (val) {
-    return Math.sqrt(val)
-  },
-  raise2: function (val) {
-    return val ** 2
-  },
-  raise10: function (val) {
-    return val ** 10
-  }
-
-}
 //concatanates sepeperate number and decimal point tokens
 function processDecimals(tokenArray) {
   const retArr = []
@@ -103,7 +68,7 @@ function addStar(tokensArray) {
 //the fake star of the show
 export const evaluate = (function evaluate(equation) {
   try {
-    console.log('eq', equation)
+    console.log('got like this in evaluate', equation)
     return eval(addStar(processDecimals(equation)).join(''))
   } catch (e) {
     console.error(e.message)

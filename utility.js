@@ -1,4 +1,4 @@
-import { TM, FUNS } from './utilityObjects.js'
+import { TM, FUNS, ERASEVALS } from './utilityObjects.js'
 const typeDiv = document.querySelector('#display-type')
 const typeElement = document.getElementById('type-span')
 const cursor = document.getElementById('cursor')
@@ -16,9 +16,13 @@ export const appendToType = (str) => {
   return typeElement.innerText
 }
 
-export const eraseOne = (n = 1, clear = false) => {
+export const eraseOne = (chars_to_del = 1, clear = false) => {
+  console.log('characters to delete: ', chars_to_del)
+  if (chars_to_del === undefined) {
+    chars_to_del = 0
+  }
   const typedText = typeElement.innerText
-  typeElement.innerText = typedText.slice((clear) ? typedText.length : 0, typedText.length - n)
+  typeElement.innerText = typedText.slice((clear) ? typedText.length : 0, typedText.length - chars_to_del)
   return typedText
 }
 
@@ -42,24 +46,52 @@ export const clear = () => {
   typeElement.innerText = ''
   return temp
 }
-
-//remove an extra star if it exists as pnultimate element
-export function removeOneToken(internalTokens) {
-  let reducedLength = 0
-  if (internalTokens.length !== 0) {
-    if (internalTokens[internalTokens.length - 2] == '*' || internalTokens[internalTokens.length - 2]?.startsWith('f')) {
-      reducedLength += internalTokens.pop().length
-      if (internalTokens[internalTokens.length - 1].startsWith('f')) {
-        reducedLength += internalTokens.pop().length - 3
-      } else {
-        reducedLength += internalTokens.pop().length
-      }
-    } else {
-      reducedLength = internalTokens.pop().length
-    }
+export function assert(condition) {
+  if (!condition) {
+    throw new Error(`${condition} failed:assert`)
   }
-  console.log('--<>', reducedLength)
-  return reducedLength
+}
+
+//handles removing of tokens from internal array as items are erased on screen
+//called each time for a backspace button press
+//function and its opening braces should be pair deleted
+/* algorithm
+* handle math functions: identified by starting with Math
+* handle math constants: identified by starting with f
+*/
+export function removeOneToken(internalTokens) {
+  const len = internalTokens.length
+  let toBeErased = 0
+  if (len === 0) {
+    return toBeErased
+  } else {
+    let lastElement = internalTokens[len - 1]
+    console.log('removetoken last element: ', lastElement)
+    if (lastElement === ')') {
+      //math constants
+      //there should at least three elements
+      if (internalTokens[len - 2].startsWith('Math')) {
+        internalTokens.pop()
+        toBeErased += ERASEVALS[internalTokens.pop()]
+        assert(internalTokens[internalTokens.length - 1] === '(')
+        internalTokens.pop()
+      }
+    } else if (lastElement === '(') {
+      if (len > 1 && internalTokens[len - 2].startsWith('f')) {
+        internalTokens.pop()
+        toBeErased++
+        toBeErased += ERASEVALS[internalTokens.pop()]
+      } else {
+        internalTokens.pop()
+        toBeErased++
+      }
+    } else if (len > 0) {
+      //remaining items
+      internalTokens.pop()
+      toBeErased++
+    }
+    return toBeErased
+  }
 }
 
 //check whether the is in the middle of a floating point value
