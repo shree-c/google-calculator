@@ -1,7 +1,4 @@
-export function isSign(arg) {
-  return (arg === '*' || arg === '/' || arg === '+' || arg === '-' || arg === '**')
-}
-
+import { isSign } from './utility.js'
 // process decimal points
 function isDecimalPart(item) {
   if (!Number.isNaN(+item) || item === '.')
