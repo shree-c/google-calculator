@@ -15,6 +15,7 @@
 
 * {
   box-sizing: border-box;
+  transition: all 0.3s ease;
 }
 
 body {
@@ -28,7 +29,6 @@ button {
   margin: 0;
   background: none;
   box-shadow: none;
-  border-radius: 0;
   color: inherit;
 }
 
@@ -56,14 +56,21 @@ button {
   box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.062);
   align-self: center;
   justify-self: center;
+  height: 620px;
 }
 
 #buttons-part {
   color: var(--button-font-color);
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   flex-direction: column;
   padding: 10px;
+}
+
+#roundbuts {
+  margin-top: 5px;
+  align-self: flex-end;
+  justify-self: flex-end;
 }
 
 .row {
@@ -74,7 +81,9 @@ button {
   margin-left: 10px;
 }
 
-
+#reveal>span {
+  margin-top: 20px;
+}
 
 /* display related styling */
 #display-part {
@@ -145,8 +154,12 @@ button {
 /* all buttons styling */
 .but,
 .sqbut {
-  margin: 2px;
+  margin: 5px 2px;
   width: 65px;
+}
+
+.sqbut {
+  margin: 2px;
 }
 
 .but svg>path {
@@ -166,7 +179,6 @@ button {
   justify-content: center;
   align-items: center;
   font-size: 1.3rem;
-  transition: all 0.1s linear;
   cursor: pointer;
 }
 
@@ -191,14 +203,18 @@ button {
   background-color: var(--button-background-color);
 }
 
-#hidden-buts {
-  /* height: 0; */
+.hidden-buts {
+  height: 0;
   align-self: flex-start;
-  margin-bottom: 10px;
   overflow: hidden;
 }
 
 .show {
-  height: 100px;
-  overflow: visible;
+  margin: 8px 0;
+  height: 65px;
+}
+
+.flatten {
+  border-radius: 45px;
+  height: 48px;
 }
